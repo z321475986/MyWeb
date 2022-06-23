@@ -1,0 +1,94 @@
+@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+  
+html{
+    /*設定網頁背景色*/
+    background: linear-gradient(20deg,#fff1b49f,#e46a0780) ;
+    text-align: center;
+    color:rgb(71, 38, 0);
+    font-family: ‘cwTeXYen’, sans-serif;
+  }
+
+
+
+img{
+    border-radius:  0 80px 0 80px;
+}
+
+button{
+    width: 100px;
+    padding: 5px 2px 5px 2px;
+    border-radius:80px;
+    background-color: rgb(255, 190, 166);
+    color:rgb(71, 38, 0);
+    outline: none;
+    cursor: pointer;
+    border:2px #9999FF solid;
+}
+
+button:hover{
+    background-color: rgb(255, 103, 43);
+    color: #fff;
+}
+
+/*input驗證顏色變化*/
+input.valid{
+  border:2px solid green;
+}
+input.invalid{
+  border:2px solid red;
+}
+
+
+.submit_button{
+  width: 100px;
+  padding: 5px 2px 5px 2px;
+  border-radius:80px;
+  background-color: rgb(255, 190, 166);
+  color:rgb(71, 38, 0);
+  outline: none;
+  cursor: pointer;
+  border:2px #9999FF solid;
+}
+
+.submit_button:hover{
+  background-color: rgb(255, 103, 43);
+  color: #fff;
+}
+
+
+.signup_data{
+text-align: left;
+margin-left:35%;
+}
+
+.supports{
+  padding: 10px;
+  background-color: #ffc29080;
+  width: 500px;
+}
+
+p{
+  text-decoration:none;
+  padding: 5px;
+}
+
+span{
+  padding: 5px 0px 5px 0px;
+  text-decoration: underline #e299ff 2px;
+}
+
+.linkage{
+    width: 100px;
+    padding: 5px 2px 5px 2px;
+    border-radius:80px;
+    background-color: rgb(255, 190, 166);
+    color:rgb(71, 38, 0);
+    outline: none;
+    cursor: pointer;
+    border:2px #9999FF solid;
+  }
+  
+.linkage:hover{
+    background-color: rgb(255, 103, 43);
+    color: #fff;
+  }

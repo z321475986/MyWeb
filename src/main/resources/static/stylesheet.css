@@ -1,0 +1,201 @@
+  @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+  
+html{
+    /*設定網頁背景色*/
+    background: linear-gradient(20deg,#fff1b49f,#e46a0780) ;
+    text-align: center;
+    color:rgb(71, 38, 0);
+    font-family: ‘cwTeXYen’, sans-serif;
+  }
+
+
+.title-1 {
+    position: relative;
+    padding: 0 65px;
+    text-align: center;
+  }
+.title-1:before {
+    position: absolute;
+    top: calc(180% - 1px);
+    left: 0;
+    width: 100%;
+    height: 1px;
+    content: '';
+    background: #000;
+  }
+.title-1 span {
+    position: relative;
+    padding: 10px 100px 10px 100px;
+    border-radius: 20px;
+    background: whitesmoke;
+    border:10px orange double;
+  }
+
+.title-2 {
+    position: relative;
+    padding: 0 65px;
+    text-align: center;
+  }
+
+.title-2 span {
+    position: relative;
+    padding: 10px 100px 10px 100px;
+    border-radius: 20px;
+    background: whitesmoke;
+    border:10px orange double;
+  }
+
+img{
+    border-radius:  0 80px 0 80px;
+}
+button{
+    width: 100px;
+    padding: 5px 2px 5px 2px;
+    border-radius:80px;
+    background-color: rgb(255, 190, 166);
+    color:rgb(71, 38, 0);
+    outline: none;
+    cursor: pointer;
+    border:2px #9999FF solid;
+}
+
+button:hover{
+    background-color: rgb(255, 103, 43);
+    color: #fff;
+}
+
+.house{
+  margin:0px auto;
+  width: 100px;
+  padding: 5px 2px 5px 2px;
+  border-radius:80px;
+  background-color: rgb(255, 190, 166);
+  color:rgb(71, 38, 0);
+  outline: none;
+  cursor: pointer;
+  border:2px #99c9ff dashed;
+}
+
+.house:hover{
+  background-color: rgb(255, 103, 43);
+  color: #fff;
+}
+
+.institution{
+  width: 100px;
+  padding: 5px 2px 5px 2px;
+  border-radius:80px;
+  background-color: rgb(255, 190, 166);
+  color:rgb(71, 38, 0);
+  outline: none;
+  cursor: pointer;
+  border:2px #ffa099 dashed;
+}
+
+.institution:hover{
+  background-color: rgb(255, 103, 43);
+  color: #fff;
+}
+
+.input-1{
+    padding: 200px;
+}
+
+.like{
+  width: 50px;
+  padding: 5px;
+  border-radius:5px;
+  background-color: rgb(255, 209, 123);
+  color:rgb(71, 38, 0);
+  outline: none;
+  cursor: pointer;
+  border:0;
+}
+
+.italic{
+  font-style: italic;
+}
+
+.linkage{
+  width: 100px;
+  padding: 5px 2px 5px 2px;
+  border-radius:80px;
+  background-color: rgb(255, 190, 166);
+  color:rgb(71, 38, 0);
+  outline: none;
+  cursor: pointer;
+  border:2px #9999FF solid;
+}
+
+.linkage:hover{
+  background-color: rgb(255, 103, 43);
+  color: #fff;
+}
+
+.area{
+  height: auto;
+  width: 100%;
+  margin:0px auto;
+}
+
+.selectarea{
+	border:0px;
+}
+
+.tableA{
+	height: auto;
+    width: auto;
+    overflow-x: auto;
+	margin:0px auto
+}
+
+/* 表格樣式 */
+table.tableA {
+  width:100%;
+  border-collapse:collapse;
+}
+table.tableA thead th {
+  padding:5px 0px;
+  color:#fff;
+  background-color:#915957;
+}
+table.tableA tbody td {
+  padding:5px 0px;
+  color:#555;
+  text-align:center;
+  background-color:#fff;
+  border-bottom:2.5px solid #915957;
+}
+/* 表格樣式 */
+
+
+
+
+.resultSpace{
+  height: auto;
+  width: 90%;
+  background-color: rgb(253, 239, 224);
+  padding: 5px 20px 5px 20px;
+  margin:0px auto;
+  border-left:5px #9999FF solid;
+}
+
+
+
+
+#dg1 {
+  margin-right:900px;
+  display: none;
+  padding: 5px;
+  background-color: #99c9ff;
+  margin:0px auto;
+  width: max-content;
+}
+
+#dg2 {
+  display: none;
+  background-color: #ffa099;
+  padding: 5px;
+  margin:0px auto;
+  width: max-content;
+}

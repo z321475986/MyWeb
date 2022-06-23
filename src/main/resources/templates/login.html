@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>登入頁面</title>
+    <link rel="stylesheet" href="stylesheet3.css">
+    <script type="text/javascript" th:src="@{/js/vue.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/login.js}"></script>
+</head>
+
+<body>
+    <h3 class="title-2">請登入查看資料</h3>
+    <img src="password-1024x683.png" height="200">
+    <br>
+    <br>
+    <br>
+    <fieldset id="app" class="loginarea">
+        <table style="margin:0 auto;">
+            <tr>
+                <td align="left">手機號碼</td>
+                <td><input v-model="result.phone" type="text" placeholder="電話號碼" required oninput="value=value.replace(/[^\d]/g,'')" maxlength=10></td>
+            </tr>
+            <tr>
+                <td align="left">密碼</td>
+                <td><input v-model="result.password" type="password" placeholder="密碼" minlength="4" maxlength="4"></td>
+            </tr>
+        </table>
+        <br>
+        <br>
+      
+        <button v-on:click="query(result.phone, result.password)">查詢</button>
+        <br><br><br>
+
+        <fieldset v-for="(member) in result" v-show="isShow" class="showbox" >
+            <div class="tablearea">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2">個人資訊</th>
+                        </tr>
+                    </thead>
+                        <tr>
+                            <td>姓名</td>
+                            <td>{{ member.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>生日</td>
+                            <td>{{ member.birthday }}</td>
+                        </tr>
+                        <tr>
+                            <td>電話</td>
+                            <td>{{ member.phone }}</td>
+                        </tr>
+                        <tr>
+                            <td>地址</td>
+                            <td>{{ member.addres }}</td>
+                        </tr>
+                        <tr>
+                            <td>性別</td>
+                            <td>{{ member.sex }}</td>
+                        </tr>
+                        <tr>
+                            <td>身高</td>
+                            <td>{{ member.height }}</td>
+                        </tr>
+                        <tr>
+                            <td>體重</td>
+                            <td>{{ member.weight }}</td>
+                        </tr>
+                        <tr>
+                            <td>家屬姓名</td>
+                            <td>{{ member.contactname }}</td>
+                        </tr>
+                        <tr>
+                            <td>家屬連絡電話</td>
+                            <td>{{ member.contactphone }}</td>
+                        </tr>
+                        <tr>
+                            <td>主要照顧者姓名</td>
+                            <td>{{ member.primarycaregiversname }}</td>
+                        </tr>
+                        <tr>
+                            <td>主要照顧者連絡電話</td>
+                            <td>{{ member.primarycaregiversphone }}</td>
+                        </tr>
+                        <tr>
+                            <td>過去病史</td>
+                            <td>{{ member.pastmedicalhistory }}</td>
+                        </tr>
+                        <tr>
+                            <td>慢性病</td>
+                            <td>{{ member.chronicmedicalhistory }}</td>
+                        </tr>
+                        <tr>
+                            <td>正在服用藥物</td>
+                            <td>{{ member.medicationprofile }}</td>
+                        </tr>
+                        <tr>
+                            <td>藥物過敏</td>
+                            <td>{{ member.allergy }}</td>
+                        </tr>
+                        <tr>
+                            <td>經濟狀況</td>
+                            <td>{{ member.financialsituation }}</td>
+                        </tr>
+
+                </table>
+                <!-- <legend>個人資訊</legend>
+                <hr>
+                <div>姓名:{{ member.name }}</div>
+                <div>生日:{{ member.birthday }}</div>
+                <div>電話:{{ member.phone }}</div>
+                <div>地址:{{ member.addres }}</div>
+                <div>性別: {{ member.sex }}</div>
+                <div>身高: {{ member.height }}</div>
+                <div>體重: {{ member.weight }}</div>
+                <div>家屬姓名: {{ member.contactname }}</div>
+                <div>家屬連絡電話: {{ member.contactphone }}</div>
+                <div>主要照顧者姓名: {{ member.primarycaregiversname }}</div>
+                <div>主要照顧者連絡電話: {{ member.primarycaregiversphone }}</div>
+                <div>過去病史: {{ member.pastmedicalhistory }}</div>
+                <div>慢性病: {{ member.chronicmedicalhistory }}</div>
+                <div>失能等級: {{ member.cmslevel }}</div>
+                <div>失智程度: {{ member.dementialevel }}</div>
+                <div>正在服用藥物: {{ member.medicationprofile }}</div>
+                <div>是否對藥物過敏: {{ member.allergy }}</div>
+                <div>經濟狀況: {{ member.financialsituation }}</div>
+                <div>備註: {{ member.note }}</div> -->
+            </div>
+        </fieldset>
+
+    </fieldset>
+    <br><br>
+    <h4>沒有帳號嗎?</h4><button><a onclick="location.href='signup'">點我註冊!</a></button>
+    <button><a onclick="location.href='/'">回首頁</a></button>
+    <br><br><br><br>
+</body>
+<script src="/js/login.js"></script>
+
+</html>

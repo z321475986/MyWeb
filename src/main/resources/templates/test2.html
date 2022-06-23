@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${msg}">華梵大學AI成果展_第4組</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script type="text/javascript" th:src="@{/js/vue.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.6.0.js}"></script>
+    <link rel="icon" href="duck.ico" type="image/x-icon"/>
+</head>
+
+<body>
+    <h1 class="title-1"><span>長照自助菜單</span></h1>
+    <br><br>
+    <img src="長照2.0.jpg" height="400">
+    
+    <br>
+    <h4>使用個人化選單 ⇩ </h4> <input type="button" value="登入" onclick="location.href='login'" class="linkage">
+    <br><br>
+    <h4>請選擇您的需求</h4>
+
+    <!-------------查詢選項區域------------------>
+    <div id="app" class="area">
+        <fieldset class="selectarea">
+        <!--地區選擇-->
+            <select v-model="d">
+                <!--有value傳value，沒有value就傳包含的文字-->
+                <option  value="">請選擇地區</option>
+                <option>七股區</option>
+                <option>下營區</option>
+                <option>中西區</option>
+                <option>仁德區</option>
+                <option>佳里區</option>
+                <option>六甲區</option>
+                <option>北區</option>
+                <option>北門區</option>
+                <option>南化區</option>
+                <option>南區</option>
+                <option>善化區</option>
+                <option>大內區</option>
+                <option>學甲區</option>
+                <option>安南區</option>
+                <option>安定區</option>
+                <option>官田區</option>
+                <option>將軍區</option>
+                <option>山上區</option>
+                <option>左鎮區</option>
+                <option>後壁區</option>
+                <option>新化區</option>
+                <option>新市區</option>
+                <option>新營區</option>
+                <option>東區</option>
+                <option>東山區</option>
+                <option>柳營區</option>
+                <option>楠西區</option>
+                <option>歸仁區</option>
+                <option>永康區</option>
+                <option>玉井區</option>
+                <option>白河區</option>
+                <option>西港區</option>
+                <option>關廟區</option>
+                <option>鹽水區</option>
+                <option>麻豆區</option>
+                <option>龍崎區</option>
+            </select>
+
+            <br><br>
+
+            <!--住家/機構選擇+classify分類-->
+            <!--按鈕-->
+            <input id="myButton" onclick="myfun()" type="button" name="answer" value="住家服務" class="house" @click="click1"/>
+            <!--摺疊部分顯示的內容-->
+            <br><br>
+                <span id="dg1" style="display:none;" class="leftcbox">
+                    <span  v-for="(item,index) in items " > <!--使用span實現選項間不換行-->
+                        <input type="checkbox" v-bind="item" v-bind:value="names[index]" v-on:change="selected($event)" />
+                        <label>{{names[index]}}</label>
+                    </span>
+                </span>
+            <br> 
+            <input id="myButton2" onclick="myfun2()" type="button" name="answer" value="入住機構" class="institution" @click="click2"/>
+            <br><br>
+                <span id="dg2" style="display:none;" class="rightcbox">    
+                        <sapn  v-for="(item,index) in items ">
+                            <input type="checkbox" v-bind="item" v-bind:value="names[index]" v-on:change="selected($event)" />
+                            <label>{{names[index]}}</label>
+                        </span>   
+                </span>
+            
+            
+            <!-- 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111v -->
+            <br><br><br>
+            
+            <button v-on:click="save" >查詢</button>
+            
+    </fieldset>
+    <!-------------查詢選項區域END------------------>
+        
+        <fieldset class="rs" v-show="isShow">
+            <legend>搜尋結果</legend>
+                    
+                    
+                        <table class="tableA">
+                            <thead>
+                                <tr>
+                                    <th width="700px">機構名稱</th>
+                                    <th width="150px">機構電話</th>
+                                    <th width="400px">機構提供之服務</th>
+                                </tr>
+                            </thead>
+                            
+                            <tr v-for="(member) in result" align="left">
+                                <td width="700px">
+                                    {{ member.name }}<hr>地址:{{member.addr}}
+                                </td>
+                                <td width="150px">
+                                    {{ member.phone }}
+                                </td>
+                                <td width="400px">
+                                    {{ member.content }}
+                                </td>
+                            </tr>
+                        <table>
+        </fieldset>
+    </div>
+
+        <br><br>
+        <h4>找不到想要的？</h4>
+        <fieldset action="" method="get">
+            <textarea v-model="member.sugges" rows="3" cols="30" placeholder="寫下您的需求"></textarea>
+            <br><br>
+            <button v-on:click="query()">提交</button>
+        </fieldset>
+
+    <br><br><br><br>
+    <em>滿意我們的設計嗎？   </em><button class="like" id="upvote" onclick="upvote()">很好</button>
+    <p id="like">還沒有人喜歡</p>
+    <!--<script src="@{/js/script.js}"></script>-->
+    <br><br><br><br>
+     
+</body>
+
+<script>
+    //-------app之內摺疊--------//
+    function myfun(){
+        var x = document.getElementById("dg1");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+        }
+    function myfun2(){
+        var x = document.getElementById("dg2");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+        }
+
+    //-----app之外計算click很好次數的方法-----//
+        var counter = 0;
+        function upvote() {
+            counter = counter + 1;
+
+            document.getElementById("like").innerHTML = counter + " 個人喜歡";
+        }
+    //-----計算click很好次數的方法END-----//
+    var app = new Vue(
+        {
+            el: '#app',
+            data: {
+                p: '',
+                count1: false,
+                count2: false,
+                d: '',
+                u: '',
+                place: '',
+                classify: '',
+                message: '',
+                result: { id: "", name: "", addr: "", phone: "", d: "", u: "", content: "", place: "", classify: "", }, //查詢結果
+                names: ['食', '衣', '住', '行', '育', '樂', '照顧者', '全人照顧'],
+                items: [false, false, false, false, false, false],
+                selectItem: [],
+                isShow: false,
+                member: '',
+                sugges:'',
+                    member:
+                    {
+						sugges:'',
+					}
+            },
+            methods: {
+                selected: function (e) {
+                    console.log(e);
+                    //判斷是選取或取消
+                    if (e.target.checked) {
+                        //選取(新增)
+                        this.selectItem.push(e.target._value);
+                    } else {
+                        //移除既有選項
+                        let index = this.selectItem.indexOf(e.target._value);
+                        this.selectItem.splice(index, 1);
+                    }
+                },
+                click1: function () {
+                    var tempplace = "";
+                    this.count1 = !this.count1;
+                    if (this.count1 == true && this.count2 == true) {
+                        tempplace += "?d="+this.d+"&place=住家&place=機構";
+                    } else if (this.count1 == false && this.count2 == true) {
+                        tempplace += "?d="+this.d+"&place=機構";
+                    }
+                    else if (this.count1 == true) {
+                        tempplace += "?d="+this.d+"&place=" + "住家";
+                    }
+                    this.p = tempplace;
+                    //alert(this.p);
+                },
+                click2: function () {
+
+                    var tempplace = "";
+                    this.count2 = !this.count2;
+                    if (this.count2 == true && this.count1 == true) {
+                        tempplace += "?d="+this.d+"&place=機構&place=住家";
+                    }
+                    else if (this.count2 == false && this.count1 == true) {
+                        tempplace += "?d="+this.d+"&place=住家";
+                    }
+                    else if (this.count2 == true) {
+                        tempplace += "?d="+this.d+"&place=機構";
+                    }
+                    this.p = tempplace;
+                    //alert(this.p);
+                },
+                save: function () {
+                    var jsonString = JSON.stringify(this.selectItem);
+                    var tempclassify = "";
+                    var i = 0;
+                    var j = 0;
+                    while (i < this.selectItem.length) {
+                        if (i == 0) {
+                            tempclassify += "&classify=" + this.selectItem[i];
+                        } else {
+                            tempclassify += "&classify=" + this.selectItem[i];
+                        }
+                        i++;
+                    }
+                    //alert(tempclassify)
+                    var xhr = new XMLHttpRequest();
+                    var urlString = '/company/findbyplaceandclassify' + this.p + tempclassify;
+                    xhr.onreadystatechange = function (e) {
+                        console.log(xhr.readyState);
+                        if (xhr.readyState == 4 && xhr.status == 200) {//連接無誤
+                            app.isShow = true;//顯示結果
+                            app.result = JSON.parse(xhr.responseText);//轉json格式
+                            console.log(xhr.responseText);
+                        } else if (xhr.readyState == 4 && xhr.status == 400) {
+                            app.isShow = false;
+                            var errorObject = JSON.parse(xhr.responseText);
+                            alert(errorObject.msg);
+                        }
+                    }
+                    xhr.open('GET', urlString);
+                    xhr.send();
+                },
+                query: function () {
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost:8080/api/v1/suggestion",
+                            dataType: "json",
+                            contentType: "application/json",
+                            data: JSON.stringify(app.member),
+                            success: function (data) {
+                                console.log(data);
+                                alert("已成功送出")
+                                // console.log(user['sex'])
+                            },
+                            error: function (data) {
+								alert("送出失敗，請重新再試")
+								alert(app.member);
+								alert(data);
+                                console.log(data);
+                                console.log("error...");
+                            }
+                        });
+                    }
+            }
+        }
+    );
+
+
+
+    
+</script>
+
+</html>

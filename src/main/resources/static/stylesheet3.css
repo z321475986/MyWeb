@@ -1,0 +1,78 @@
+@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+  
+html{
+    /*設定網頁背景色*/
+    background: linear-gradient(20deg,#fff1b49f,#e46a0780) ;
+    text-align: center;
+    color:rgb(71, 38, 0);
+    font-family: ‘cwTeXYen’, sans-serif;
+  }
+
+
+
+img{
+    border-radius:  0 80px 0 80px;
+}
+
+button{
+    width: 100px;
+    padding: 5px 2px 5px 2px;
+    border-radius:80px;
+    background-color: rgb(255, 190, 166);
+    color:rgb(71, 38, 0);
+    outline: none;
+    cursor: pointer;
+    border:2px #9999FF solid;
+}
+
+button:hover{
+    background-color: rgb(255, 103, 43);
+    color: #fff;
+}
+
+/* 漸變 color1 - color2 - color1 */
+
+hr.style-one {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+.loginarea{
+	border: 0;
+}
+
+.showbox{
+	margin:0px auto ;
+	border: 0;
+	
+}.tablearea{
+    margin-left:36%;
+}
+
+/* .login_div{
+text-align: left;
+margin-left:35%;
+} */
+
+p{
+    padding: 5px;
+    text-decoration: underline #e299ff 2px;
+}
+
+.linkage{
+    width: 100px;
+    padding: 5px 2px 5px 2px;
+    border-radius:80px;
+    background-color: rgb(255, 190, 166);
+    color:rgb(71, 38, 0);
+    outline: none;
+    cursor: pointer;
+    border:2px #9999FF solid;
+  }
+  
+.linkage:hover{
+    background-color: rgb(255, 103, 43);
+    color: #fff;
+  }

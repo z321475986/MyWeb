@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>註冊頁面</title>
+        <link rel="stylesheet" href="stylesheet2.css">
+        <script type="text/javascript" th:src="@{/js/jquery-3.6.0.js}"></script>
+        <script type="text/javascript" th:src="@{/js/vue.min.js}"></script>
+
+    </head>
+    <body>
+        <fieldset id="members" action="" method="get" class="pdata_in" style="border:0px ;">
+            <h1>請輸入個人資料</h1>
+            <img src="welcome.jpg" width="500">
+            <br>
+            <br>
+            <div class="signup_data">
+            <table>
+                <p>*<span>手機號碼(即帳號)</span>： <input type="tel" minlength="9" maxlength="10" size="10" placeholder="0912345678" pattern="09\d{8}" v-model="member.phone" required></p>
+                <p>*<span>密碼</span>：<input type="text" v-model="member.password" minlength="4" maxlength="4" size="10" placeholder="請輸入四位英數字" required></p>
+                <p>*<span>姓名</span>：<input type="text" v-model="member.name" placeholder="陳小明" required></p>
+                <p>*<span>出生年月日</span>：<input type="date" value="1957-01-01" v-model="member.birthday"  required></p>
+
+
+                <!--個人基本生理資料START-->
+                <datalist id="genderxx">
+                    <option>男</option>
+                    <option>女</option>
+                </datalist>
+                <p><label for="textx1">*<span>生理性別</span>：</label> <input type="text" list="genderxx" id="textx1"  size="1" v-model="member.sex" required></p> 
+                <p><span>身高</span>：<input type="number" v-model="member.height" placeholder="公分(cm)" step="0.01" min="110" max="200" /></p>
+                <p><span>體重</span>：<input type="number" v-model="member.weight" placeholder="公斤(kg)" step="0.01" min="30" /></p>
+                <p><span>居住地址</span>：<input type="text" v-model="member.addres" size="40" placeholder="台南市北區勝利路138號" /></p>
+
+                
+                <br><br>
+                
+
+                <p>*<span>慢性病</span>：<br><textarea v-model="member.pastmedicalhistory" rows="6" cols="40" placeholder="" required></textarea></p>
+                <br>
+                <p>*<span>過去病史</span>：<br><textarea v-model="member.chronicmedicalhistory" rows="6" cols="40" placeholder="甲狀腺腫大" required></textarea></p> 
+                <br>
+                <p>*<span>服用藥物</span>：<input type="text"  v-model="member.medicationprofile" placeholder="降血脂藥" required></p>
+                <p>*<span>致過敏藥物</span>：<input type="text" v-model="member.allergy" placeholder="盤尼西林" required></p>
+                 <!--個人基本生理資料END-->
+
+                <br><br>
+
+                <!--經濟狀況START-->
+                <datalist id="FinancialStatusxx">
+                    <option>普通</option>
+                    <option>中低收入戶</option>
+                    <option>低收入戶</option>
+                </datalist>
+                <p><label for="textx2"><span>經濟狀況</span>：</label> <input type="text" v-model="member.financialsituation" size="4" list="FinancialStatusxx" id="textx2"/></p>
+                <!--經濟狀況END-->
+                <br><br>
+
+                <!--家屬資料區域START-->
+                <div class="supports">
+                    <p>*<span>家屬姓名</span>：<input type="text" v-model="member.contactname" NAME="contactname" size="8" placeholder="王大華" required></p>
+                    <p>*<span>家屬連絡電話</span>：<input type="tel" v-model="member.contactphone" NAME="contactphone" minlength="9" maxlength="10" pattern="09\d{8}" size="10" placeholder="0987654321" required></p>
+                    <br><br>
+                    <!--同家屬電話，解決如何複寫-->
+                    <p>
+                        <input type="checkbox" id="cbox1" value="first_checkbox">
+                        <label for="cbox1"> 同家屬資料，即不用填寫下方照顧者資料 </label>
+                    </p>
+                    <p><span>主要照顧者姓名</span>：<input type="text" v-model="member.primarycaregiversname" NAME="primarycaregiversname" size="8"  placeholder="阿美"  /></p>
+                    <p><span>主要照顧者連絡電話</span>：<input type="tel" v-model="member.primarycaregiversphone" NAME="primarycaregiversphone" minlength="9" maxlength="10" size="10" placeholder="0951357842"  /></p>
+                    <br><br>
+                </div>
+                <!--家屬資料區域END-->
+            <br><br>                                                
+            </div>
+            </table>
+            
+            <!--提交鍵 如何運用待釐清  要送進資料庫-->
+            <br><button  v-on:click="query(member.name
+                        , member.addres
+                        , member.phone
+                        , member.birthday
+                        , member.sex
+                        , member.height
+                        , member.weight
+                        , member.contactname
+                        , member.contactphone
+                        , member.primarycaregiversname
+                        , member.primarycaregiversphone
+                        , member.pastmedicalhistory
+                        , member.chronicmedicalhistory
+                        , member.cmslevel
+                        , member.dementialevel
+                        , member.medicationprofile
+                        , member.allergy
+                        , member.financialsituation
+                        , member.note
+                        )" >註冊</button>
+
+                        
+            <input type="button" value="回首頁" onclick="location.href='/'" class="linkage">
+            <br><br><br><br>
+        </fieldset>
+
+        <script>
+            var members = new Vue(
+                {
+                    el: '#members',
+                    data: {
+                        name: '', addres: '', phone: '', birthday: ''
+                        , sex: '', height: '', weight: '', contactname: '', contactphone: '',
+                        primarycaregiversname: '', primarycaregiversphone: '',
+                        pastmedicalhistory: '',chronicmedicalhistory:'',
+                        cmslevel: '', dementialevel: '', medicationprofile: '', allergy: '', financialsituation: '', note: '',
+                        member:
+                        {
+                            name: null
+                            , addres: null
+                            , phone: null
+                            , birthday: "1957-01-01"
+                            , sex: null
+                            , height: null
+                            , weight: null
+                            , contactname: null
+                            , contactphone: null
+                            , primarycaregiversname: null
+                            , primarycaregiversphone: null
+                            , pastmedicalhistory: null
+                            , chronicmedicalhistory:null
+                            , cmslevel: null
+                            , dementialevel: null
+                            , medicationprofile: null
+                            , allergy: null
+                            , financialsituation: null
+                            , note: null
+                        }
+                    },
+                    methods:
+                    {
+                        query: function () {
+                            $.ajax({
+                                type: "POST",
+                                url: "http://localhost:8080/api/v1/employees",
+                                dataType: "json",
+                                contentType: "application/json",
+                                data: JSON.stringify(members.member),
+                                success: function (data) {
+                                    console.log(data);
+                                    alert("註冊完成，請回首頁重新登入") // 註冊成功顯示的視窗
+                                    console.log(data)
+                                    window.location.replace('/');
+
+                                },
+                                error: function (data) {
+                                    console.log(data);
+                                    alert("填寫錯誤，請重新填寫")
+                                    console.log("error");
+                                    console.log(data);
+                                    console.log("123456");
+                                }
+                               
+                            });
+                        }
+                    }
+                })
+        </script>
+
+    </body>
+</html>
